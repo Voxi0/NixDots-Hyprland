@@ -20,45 +20,28 @@
 	in {
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
-			# Module options
-			options.enableNVidia = lib.mkOption {
-    		type = lib.types.bool;
-    		default = false;
-    		description = "Enable NVIDIA GPU tweaks for Hyprland.";
-  		};
+			# Configure Hyprland cache to avoid compiling a lot from scratch
+			nix.settings = {
+				substituters = [ "https://hyprland.cachix.org" ];
+				trusted-public-keys = [
+					"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+				];
+			};
 
-			# Configuration
-			config = {
-				# Configure Hyprland cache to avoid compiling a lot from scratch
-				nix.settings = {
-					substituters = [ "https://hyprland.cachix.org" ];
-					trusted-public-keys = [
-						"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-					];
-				};
+			# NVidia specific
+			boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
-				# NVidia specific
-				boot.kernelParams = lib.mkIf config.enableNVidia [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-
-				# Hyprland NixOS module - Required as it enables critical components needed to run Hyprland properly
-				programs.hyprland = {
-					enable = true;
-					withUWSM = true;
-					package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-					portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-				};
+			# Hyprland NixOS module - Required as it enables critical components needed to run Hyprland properly
+			programs.hyprland = {
+				enable = true;
+				withUWSM = true;
+				package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+				portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 			};
     };
 
 		# Export Home Manager module
 		homeManagerModules = {
-			# Module options
-			options.nixDotsHyprland.xkbLayout = lib.mkOption {
-				type = lib.types.str;
-				default = "us";
-				description = "Keyboard layout";
-			};
-
 			default = self.homeManagerModules.nixdots-hyprland;
 			nixdots-hyprland = import ./default.nix { inherit lib inputs; };
 		};
