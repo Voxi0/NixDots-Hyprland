@@ -56,7 +56,7 @@
     };
 
 		# Export Home Manager module
-		homeManagerModules.default = { config, pkgs, lib, ... }: import ./default.nix {
+		homeManagerModules.default = { lib, config, inputs, pkgs, ... }: import ./default.nix {
       inherit config pkgs lib inputs;
     };
 	};
