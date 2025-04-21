@@ -1,4 +1,4 @@
-{ lib, config, username, inputs, pkgs, xkbLayout, ... }: {
+{ lib, config, inputs, pkgs, xkbLayout, ... }: {
 	# Import Nix modules
 	imports = [ ./apps ];
 
@@ -43,9 +43,6 @@
 
 	# Hyprland
 	wayland.windowManager.hyprland = let
-		# To easily access custom options like `enableAGS` for extra configuration
-		options = config.home-manager.users.${username};
-
 		# Total number of workspaces to generate keybinds for
 		numWorkspaces = 10;
 
@@ -115,7 +112,7 @@
 			"$menu" = "uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)";
 
 			# Command to bring up the logout menu
-			"$logoutMenuCmd" = (lib.mkIf (options.enableWlogout) ("uwsm app -- wlogout"));
+			"$logoutMenuCmd" = (lib.mkIf (config.enableWlogout) ("uwsm app -- wlogout"));
 
 			# Commands to control volume
 			"$increaseVolumeCmd" = "swayosd-client --output-volume +5 --max-volume 100";
@@ -137,7 +134,7 @@
 				"systemctl --user enable --now hyprpolkitagent.service"
 				"uwsm app -- swww-daemon"
 				"swww restore"
-				(lib.mkIf options.enableAGS "uwsm app -- ags run --gtk4")
+				(lib.mkIf config.enableAGS "uwsm app -- ags run --gtk4")
 				"uwsm app -- udiskie --automount --smart-tray --terminal=$terminal"
 				"hyprshade on vibrance"
 				(lib.mkIf (pkgs.mpdscribble != null) "uwsm app -- mpdscribble")
@@ -291,7 +288,7 @@
 				"$mainMod, F, fullscreen"
 				"$mainMod, V, togglefloating"
 				"$mainMod, Q, killactive"
-				(lib.mkIf (options.enableWlogout) "$mainMod SHIFT, E, exec, $logoutMenuCmd")
+				(lib.mkIf (config.enableWlogout) "$mainMod SHIFT, E, exec, $logoutMenuCmd")
 
 				# Brightness
 				"$mainMod CONTROL, Up, exec, $increaseBrightnessCmd"
