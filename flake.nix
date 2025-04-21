@@ -56,6 +56,6 @@
     };
 
 		# Export Home Manager module
-		homeManagerModules.default = ./default.nix;
+		homeManagerModules.default = ./default.nix { inherit inputs; };
 	};
 }
