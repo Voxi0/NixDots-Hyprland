@@ -16,6 +16,13 @@
 
 	# Actions to be performed after all dependencies are fetched
 	outputs = { self, nixpkgs, ... }@inputs: {
+		# Module options
+		options.nixdots-hyprland.xkbLayout = nixpkgs.lib.mkOption {
+    	type = nixpkgs.lib.types.str;
+    	default = "us";
+    	description = "Keyboard layout";
+  	};
+
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
 			# Module options
