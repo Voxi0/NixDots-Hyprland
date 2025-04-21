@@ -3,8 +3,6 @@
 
 	# Dependencies
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs";
-
 		# Hyprland
 		hyprland.url = "github:hyprwm/Hyprland";
 		hyprland-plugins = {
@@ -58,9 +56,8 @@
     };
 
 		# Export Home Manager module
-		homeManagerModules.default = import ./default.nix {
-      inherit inputs nixpkgs;
-      lib = nixpkgs.lib;
+		homeManagerModules.default = { config, pkgs, lib, ... }: import ./default.nix {
+      inherit config pkgs lib inputs;
     };
 	};
 }
