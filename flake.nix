@@ -18,13 +18,6 @@
 	outputs = { self, nixpkgs, ... }@inputs: let
 		lib = nixpkgs.lib;
 	in {
-		# Module options
-		options.nixdots-hyprland.xkbLayout = nixpkgs.lib.mkOption {
-    	type = nixpkgs.lib.types.str;
-    	default = "us";
-    	description = "Keyboard layout";
-  	};
-
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
 			# Module options
@@ -59,6 +52,13 @@
 
 		# Export Home Manager module
 		homeManagerModules = {
+			# Module options
+			options.nixdots-hyprland.xkbLayout = nixpkgs.lib.mkOption {
+				type = nixpkgs.lib.types.str;
+				default = "us";
+				description = "Keyboard layout";
+			};
+
 			default = self.homeManagerModules.nixdots-hyprland;
 			nixdots-hyprland = import ./default.nix { inherit lib inputs; };
 		};
