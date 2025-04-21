@@ -44,8 +44,9 @@
 		homeManagerModules = {
 			default = self.homeManagerModules.nixdots-hyprland;
 			nixdots-hyprland = {
-				imports = [ ./default.nix ];
-				specialArgs = { inherit lib inputs; };
+				imports = [
+					./default.nix { inherit lib inputs; }
+				];
 			};
 		};
 	};
