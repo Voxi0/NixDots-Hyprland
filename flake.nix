@@ -56,8 +56,9 @@
     };
 
 		# Export Home Manager module
-		homeManagerModules.default = { lib, config, inputs, pkgs, ... }: import ./default.nix {
-      inherit config pkgs lib inputs;
-    };
+		homeManagerModules = {
+			default = self.homeManagerModules.nixdots-hyprland;
+			nixdots-hyprland = import ./default.nix { inherit lib inputs; };
+		};
 	};
 }
