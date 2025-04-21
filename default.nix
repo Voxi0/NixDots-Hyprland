@@ -148,7 +148,7 @@
 			#############
 			input = {
 				# Keyboard
-				kb_layout = config.nixdots-hyprland.xkbLayout;
+				kb_layout = config.xkbLayout;
 				# kb_variant =
 				# kb_model =
 				# kb_options =
