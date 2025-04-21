@@ -53,8 +53,8 @@
 		# Export Home Manager module
 		homeManagerModules = {
 			# Module options
-			options.nixdots-hyprland.xkbLayout = nixpkgs.lib.mkOption {
-				type = nixpkgs.lib.types.str;
+			options.nixDotsHyprland.xkbLayout = lib.mkOption {
+				type = lib.types.str;
 				default = "us";
 				description = "Keyboard layout";
 			};
