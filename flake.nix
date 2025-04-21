@@ -42,9 +42,11 @@
 
 		# Export Home Manager module
 		homeManagerModules = {
-			extraSpecialArgs = { inherit inputs; };
 			default = self.homeManagerModules.nixdots-hyprland;
-			nixdots-hyprland = import ./default.nix { inherit lib inputs; };
+			nixdots-hyprland = {
+				imports = [ ./default.nix ];
+				specialArgs = { inherit lib inputs; };
+			};
 		};
 	};
 }
