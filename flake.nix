@@ -3,6 +3,8 @@
 
 	# Dependencies
 	inputs = {
+		nixpkgs.url = "github:nixos/nixpkgs";
+
 		# Hyprland
 		hyprland.url = "github:hyprwm/Hyprland";
 		hyprland-plugins = {
