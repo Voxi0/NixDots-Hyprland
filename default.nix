@@ -1,4 +1,4 @@
-{ lib, config, inputs, pkgs, ... }: {
+{ lib, inputs }: { config, pkgs, ... }: {
 	# Import Nix modules
 	imports = [ ./apps ];
 
