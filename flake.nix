@@ -15,7 +15,9 @@
 	};
 
 	# Actions to be performed after all dependencies are fetched
-	outputs = { self, nixpkgs, ... }@inputs: {
+	outputs = { self, nixpkgs, ... }@inputs: let
+		lib = nixpkgs.lib;
+	in {
 		# Module options
 		options.nixdots-hyprland.xkbLayout = nixpkgs.lib.mkOption {
     	type = nixpkgs.lib.types.str;
