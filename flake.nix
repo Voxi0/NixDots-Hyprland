@@ -15,7 +15,7 @@
 	};
 
 	# Actions to be performed after all dependencies are fetched
-	outputs = { self, nixpkgs, hyprland, ... }: {
+	outputs = { self, nixpkgs, ... }@inputs: {
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
 			# Module options
@@ -42,8 +42,8 @@
 				programs.hyprland = {
 					enable = true;
 					withUWSM = true;
-					package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-					portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+					package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+					portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 				};
 			};
     };
