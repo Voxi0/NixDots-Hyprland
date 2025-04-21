@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, xkbLayout, ... }: {
+{ lib, config, inputs, pkgs, xkbLayout, ... }: {
 	# Import Nix modules
 	imports = [ ./apps ];
 
