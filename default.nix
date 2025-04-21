@@ -1,4 +1,4 @@
-{ lib, config, inputs, pkgs, xkbLayout, ... }: {
+{ lib, config, inputs, pkgs, ... }: {
 	# Import Nix modules
 	imports = [ ./apps ];
 
@@ -145,7 +145,7 @@
 			#############
 			input = {
 				# Keyboard
-				kb_layout = xkbLayout;
+				kb_layout = config.nixdots-hyprland.xkbLayout;
 				# kb_variant =
 				# kb_model =
 				# kb_options =
