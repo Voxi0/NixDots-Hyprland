@@ -1,6 +1,9 @@
 { lib, inputs }: { config, pkgs, ... }: {
 	# Import Nix modules
-	imports = [ ./apps ];
+	imports = [
+		inputs.ags.homeManagerModules.default
+		./apps
+	];
 
 	# Enable/Disable Home Manager modules
 	enableWofi = true;
