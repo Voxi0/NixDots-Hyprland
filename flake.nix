@@ -56,6 +56,9 @@
     };
 
 		# Export Home Manager module
-		homeManagerModules.default = import ./default.nix { inherit nixpkgs.lib config inputs nixpkgs; };
+		homeManagerModules.default = import ./default.nix {
+      inherit inputs nixpkgs;
+      lib = nixpkgs.lib;
+    };
 	};
 }
