@@ -1,6 +1,6 @@
-{ lib, config, inputs, pkgs, ... }: {
+{ lib, inputs }: { config, pkgs, ... }: {
   # Import Nix modules
-  imports = [ inputs.self.ags.homeManagerModules.default ];
+  imports = [ inputs.ags.homeManagerModules.default ];
 
   # Module options
   options.enableAGS = lib.mkEnableOption "AGS (Widgets)";
