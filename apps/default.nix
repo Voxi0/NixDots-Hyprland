@@ -1,7 +1,10 @@
-{ inputs, ... }: {
+{ lib, config, inputs, pkgs, ... }: {
   # Import Nix modules
   imports = [
-    ./wofi ./mako.nix ./wlogout.nix
-		(import ./ags { inherit inputs; })
+    (import ./wofi { inherit inputs lib pkgs config; })
+    (import ./ags { inherit inputs lib pkgs config; })
+    (import ./mako.nix { inherit inputs lib pkgs config; })
+    (import ./wlogout.nix { inherit inputs lib pkgs config; })
   ];
 }
+
