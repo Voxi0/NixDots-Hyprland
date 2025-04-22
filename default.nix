@@ -1,4 +1,7 @@
 { inputs }: { lib, config, pkgs, ... }: {
+	# Import Nix modules
+	imports = [ ./apps ];
+
 	# Module options
 	options.nixDotsHyprland = {
 		xkbLayout = lib.mkOption {

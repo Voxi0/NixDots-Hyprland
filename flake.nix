@@ -44,7 +44,6 @@
 			nixdots-hyprland = { lib, config, pkgs, ... }: {
 				imports = [
 					(import ./default.nix { inherit inputs; })
-					(import ./apps { inherit inputs; })
 				];
 			};
 		};
