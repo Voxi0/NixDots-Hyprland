@@ -45,7 +45,7 @@
 				inputs = args.inputs or null;
 			in {
 				imports = [
-					(import ./default.nix { inherit lib inputs; })
+					(import ./default.nix { inherit lib config inputs; })
 				];
 			};
 		};
