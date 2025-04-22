@@ -8,7 +8,7 @@
 	# Module options
 	options.nixDotsHyprland = {
 		xkbLayout = lib.mkOption {
-			type - lib.types.str;
+			type = lib.types.str;
 			default = "us";
 			description = "Keyboard layout";
 		};

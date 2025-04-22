@@ -23,9 +23,7 @@
 	};
 
 	# Actions to be performed after all dependencies are fetched
-	outputs = { self, nixpkgs, ... }@inputs: let
-		lib = nixpkgs.lib;
-	in {
+	outputs = { self, nixpkgs, ... }@inputs: {
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
 			# NVidia specific
@@ -45,7 +43,7 @@
 			default = self.homeManagerModules.nixdots-hyprland;
 			nixdots-hyprland = {
 				imports = [
-					{ inherit lib inputs; }
+					{ inherit inputs; }
 					./default.nix
 				];
 			};
