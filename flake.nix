@@ -41,12 +41,7 @@
 		# Export Home Manager module
 		homeManagerModules = {
 			default = self.homeManagerModules.nixdots-hyprland;
-			nixdots-hyprland = {
-				imports = [
-					{ inherit inputs; }
-					./default.nix
-				];
-			};
+			nixdots-hyprland = import default.nix { inherit inputs; };
 		};
 	};
 }
