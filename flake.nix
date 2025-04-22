@@ -42,5 +42,15 @@
 		homeManagerModules.default = { config, pkgs, lib, ... }: let
 			ags = inputs.ags;
 		in { imports = [ ./default.nix ]; };
+		homeManagerModules = {
+			default = self.homeManagerModules.nixdots-hyprland;
+			nixdots-hyprland = { config, pkgs, lib, ... }@args: let
+				inputs = args.inputs or null;
+			in {
+				imports = [
+					(import ./default.nix { inherit inputs; })
+				];
+			};
+		};
 	};
 }
