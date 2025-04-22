@@ -41,6 +41,6 @@
 		# Export Home Manager module
 		homeManagerModules.default = { config, pkgs, lib, ... }: let
 			ags = inputs.ags;
-		in { imports = [ ./default.nix ]; }
+		in { imports = [ ./default.nix ]; };
 	};
 }
