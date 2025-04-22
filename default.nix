@@ -159,7 +159,7 @@
 				#############
 				input = {
 					# Keyboard
-					kb_layout = config.home.xkbLayout;
+					kb_layout = config.nixDotsHyprland.xkbLayout;
 					# kb_variant =
 					# kb_model =
 					# kb_options =
