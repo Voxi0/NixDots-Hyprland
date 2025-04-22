@@ -11,9 +11,6 @@
 
 	# Dependencies
 	inputs = {
-		# Nixpkgs
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
 		# Hyprland
 		hyprland.url = "github:hyprwm/Hyprland";
 		hyprland-plugins = {
@@ -26,10 +23,7 @@
 	};
 
 	# Actions to be performed after all dependencies are fetched
-	outputs = { self, nixpkgs, ... }@inputs: let
-		system = "x86_64-linux";
-		pkgs = nixpkgs.legacyPackages.${system};
-	in {
+	outputs = { self, nixpkgs, ... }@inputs: {
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
 			# NVidia specific
@@ -47,11 +41,9 @@
 		# Export Home Manager module
 		homeManagerModules = {
 			default = self.homeManagerModules.nixdots-hyprland;
-			nixdots-hyprland = { config, pkgs, lib, ... }@args: let
-				inputs = args.inputs or null;
-			in {
+			nixdots-hyprland = { lib, config, pkgs, ... }: {
 				imports = [
-					(import ./default.nix { inherit lib config inputs pkgs; })
+					(import ./default.nix { inherit inputs; })
 				];
 			};
 		};
