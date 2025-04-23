@@ -1,4 +1,4 @@
-{ lib, config, inputs, pkgs, ... }: {
+{ inputs }: { lib, config, pkgs, ... }: {
 	# Import Nix modules
 	imports = [ inputs.ags.homeManagerModules.default ];
 

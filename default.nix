@@ -1,6 +1,6 @@
 { inputs }: { lib, config, pkgs, ... }: {
 	# Import Nix modules
-	imports = [ ./apps ];
+	imports = [ (import ./apps) { inherit inputs; } ];
 
 	# Module options
 	options.nixDotsHyprland = {

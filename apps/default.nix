@@ -1,6 +1,6 @@
 { inputs }: {
   # Import Nix modules
   imports = [
-    ./wofi ./ags ./mako.nix ./wlogout.nix
+    ./wofi ./ags { inherit inputs; } ./mako.nix ./wlogout.nix
   ];
 }
