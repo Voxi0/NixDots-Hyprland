@@ -152,7 +152,7 @@
 					"systemctl --user enable --now hyprpolkitagent.service"
 					"uwsm app -- swww-daemon"
 					"swww restore"
-					(lib.mkIf config.enableAGS "uwsm app -- ags run --gtk4")
+					(lib.mkIf config.nixDotsHyprland.enableAGS "uwsm app -- ags run --gtk4")
 					"uwsm app -- udiskie --automount --smart-tray --terminal=$terminal"
 					"hyprshade on vibrance"
 					(lib.mkIf (pkgs.mpdscribble != null) "uwsm app -- mpdscribble")
