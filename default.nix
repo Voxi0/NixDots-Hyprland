@@ -17,7 +17,7 @@
 		# Enable/Disable Home Manager modules
 		enableWofi = true;
 		enableMako = true;
-		enableAGS = true;
+		nixDotsHyprland.enableAGS = true;
 		enableWlogout = true;
 
 		# Home
