@@ -1,6 +1,6 @@
 { inputs }: { lib, config, pkgs, ... }: {
 	# Import Nix modules
-	imports = [ (import ./apps) { inherit inputs; } ];
+	imports = [ inputs.ags.homeManagerModules.default ];
 
 	# Module options
 	options.nixDotsHyprland = {
@@ -9,6 +9,7 @@
 			default = "us";
 			description = "Keyboard layout";
 		};
+		enableAGS = lib.mkEnableOption "Enables AGS for widgets";
 	};
 
 	# Configuration
@@ -28,6 +29,9 @@
 
 				# Utilities
 				wl-clipboard grim slurp feh udiskie hyprshade
+
+				# For AGS (REQUIRED)
+				sassc
 			];
 
 			# Hyprcursor
@@ -371,6 +375,19 @@
 					"$mainMod, mouse:272, movewindow"
 					"$mainMod, mouse:273, resizewindow"
 				];
+			};
+
+			# AGS configuration - For widgets and such
+			programs.ags = {
+				enable = true;
+				configDir = null;
+
+				# Additional packages to add to GJS's runtime
+				extraPackages = with pkgs; [
+					gtksourceview webkitgtk accountsservice
+				] ++ (with inputs.ags.packages.${pkgs.system}; [
+					hyprland powerprofiles battery network wireplumber mpris notifd bluetooth tray
+				]);
 			};
 		};
 	};
