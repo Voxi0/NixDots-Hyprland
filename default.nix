@@ -1,6 +1,9 @@
 { inputs }: { lib, config, pkgs, ... }: {
 	# Import Nix modules
-	imports = [ inputs.ags.homeManagerModules.default ];
+	imports = [
+		inputs.ags.homeManagerModules.default
+		./apps
+	];
 
 	# Module options
 	options.nixDotsHyprland = {
