@@ -7,12 +7,12 @@
 
 	# Module options
 	options.nixDotsHyprland = {
+		enableAGS = lib.mkEnableOption "Enables AGS for widgets";
 		xkbLayout = lib.mkOption {
 			type = lib.types.str;
 			default = "us";
 			description = "Keyboard layout";
 		};
-		enableAGS = lib.mkEnableOption "Enables AGS for widgets";
 	};
 
 	# Configuration
