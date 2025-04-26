@@ -8,7 +8,7 @@
 	# Module options
 	options.nixDotsHyprland = {
 		enableAGS = lib.mkEnableOption "Enables AGS for widgets";
-		xkbLayout = lib.mkOption {
+		kbLayout = lib.mkOption {
 			type = lib.types.str;
 			default = "us";
 			description = "Keyboard layout";
@@ -163,7 +163,7 @@
 				#############
 				input = {
 					# Keyboard
-					kb_layout = config.nixDotsHyprland.xkbLayout;
+					kb_layout = config.nixDotsHyprland.kbLayout;
 					# kb_variant =
 					# kb_model =
 					# kb_options =
