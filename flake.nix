@@ -1,14 +1,6 @@
 {
 	description = "NixDots Hyprland configuration";
 
-	# Configure Hyprland binary cache to avoid recompiling a lot of packages from scratch every rebuild
-	nixConfig = {
-		extra-substituters = [ "https://hyprland.cachix.org" ];
-		extra-trusted-public-keys = [
-			"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-		];
-	};
-
 	# Dependencies
 	inputs = {
 		# Hyprland
@@ -26,6 +18,12 @@
 	outputs = { self, nixpkgs, ... }@inputs: {
 		# Export NixOS module for NixOS specific configuration
 		nixosModules.default = { config, pkgs, lib, ... }: {
+			# Configure Hyprland binary cache to avoid recompiling a lot of packages from scratch every rebuild
+			nix.settings = {
+				substituters = [ "https://hyprland.cachix.org" ];
+				trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+			};
+
 			# NVidia specific
 			boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
@@ -41,11 +39,7 @@
 		# Export Home Manager module
 		homeManagerModules = {
 			default = self.homeManagerModules.nixdots-hyprland;
-			nixdots-hyprland = { lib, config, pkgs, ... }: {
-				imports = [
-					(import ./default.nix { inherit inputs; })
-				];
-			};
+			nixdots-hyprland = import ./default.nix { inherit inputs; };
 		};
 	};
 }
