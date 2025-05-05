@@ -24,7 +24,7 @@
       borderRadius = 6;
 
       # Extra Config
-      extraConfig = ''
+      settings = ''
         # Icon Location
         icon-location=left
 
