@@ -23,15 +23,17 @@
       borderSize = 1;
       borderRadius = 6;
 
-      # Extra Config
+      # Settings
       settings = ''
-        # Icon Location
-        icon-location=left
+				{
+        	# Icon Location
+        	icon-location = "left";
 
-        # Mouse Button Actions
-        on-button-left=invoke-default-action
-        on-button-middle=dismiss-all
-        on-button-right=dismiss
+					# Mouse Button Actions
+					on-button-left = "invoke-default-action";
+					on-button-middle = "dismiss-all";
+					on-button-right = "dismiss";
+				}
       '';
     };
   };
