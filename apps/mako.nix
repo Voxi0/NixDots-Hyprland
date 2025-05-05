@@ -8,31 +8,29 @@
     services.mako = {
       # Enable/Disable Mako
       enable = true;
-
-      # Notification settings
-      maxVisible = 3;
-      layer = "overlay";
-      anchor = "top-right";
-      sort = "-time";
-
-      # Icons
-      icons = true;
-      maxIconSize = 64;
-
-      # Border
-      borderSize = 1;
-      borderRadius = 6;
-
-      # Settings
-      settings = ''
+			settings = ''
 				{
+					# Notification settings
+					maxVisible = 3;
+					layer = "overlay";
+					anchor = "top-right";
+					sort = "-time";
+
+					# Icons
+					icons = true;
+					maxIconSize = 64;
+
+					# Border
+					borderSize = 1;
+					borderRadius = 6;
+
         	# Icon Location
-        	icon-location = "left";
+        	iconLocation = "left";
 
 					# Mouse Button Actions
-					on-button-left = "invoke-default-action";
-					on-button-middle = "dismiss-all";
-					on-button-right = "dismiss";
+					onButtonLeft = "invoke-default-action";
+					onButtonMiddle = "dismiss-all";
+					onButtonRight = "dismiss";
 				}
       '';
     };
