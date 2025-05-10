@@ -142,8 +142,8 @@
 				"$decreaseBrightnessCmd" = "swayosd-client --brightness -5";
 
 				# Commands to use for screenshots - For the entire screen or selected area
-				"$fullscreenScreenshotCmd" = "grim - | wl-copy";
-				"$selectedAreaScreenshotCmd" = ''grim -g "$(slurp)" - | wl-copy'';
+				"$fullscreenScreenshotCmd" = "grim";
+				"$selectedAreaScreenshotCmd" = ''grim -g "$(slurp)"'';
 
 				#################
 				### AUTOSTART ###
@@ -345,6 +345,9 @@
 					# Scroll through existing workspaces using $mainMod key and scroll
 					"$mainMod, mouse_down, workspace, e+1"
 					"$mainMod, mouse_up, workspace, e-1"
+
+					# Miscellaneous
+					",CAPSLOCK, exec, swayosd-client --caps-lock"
 				] ++ (
 					# Workspaces
 					builtins.concatLists (builtins.genList
