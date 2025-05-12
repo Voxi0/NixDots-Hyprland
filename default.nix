@@ -94,10 +94,7 @@
 		in {
 			enable = true;
 			xwayland.enable = true;
-			systemd = {
-				enable = false;
-				variables = ["--all"];
-			};
+			systemd.enable = false;
 
 			# Plugins and settings
 			plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [];

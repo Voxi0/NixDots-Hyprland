@@ -28,12 +28,6 @@
 				package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 				portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 			};
-
-			# XDG desktop portal
-			xdg.portal = {
-				enable = true;
-				extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-			};
     };
 
 		# Export Home Manager module
