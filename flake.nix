@@ -28,12 +28,16 @@
 				package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 				portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 			};
+
+			# XDG desktop portal
+			xdg.portal = {
+				enable = true;
+				extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+				configPackages = [ inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland ];
+			};
     };
 
 		# Export Home Manager module
-		homeManagerModules = {
-			default = self.homeManagerModules.nixdots-hyprland;
-			nixdots-hyprland = import ./default.nix { inherit inputs; };
-		};
+		homeManagerModules.default = import ./default.nix { inherit inputs; };
 	};
 }
