@@ -395,7 +395,7 @@
 
 			# Additional packages to add to GJS's runtime
 			extraPackages = with pkgs; [
-				gtksourceview webkitgtk accountsservice
+				gtksourceview accountsservice
 			] ++ (with inputs.ags.packages.${pkgs.system}; [
 				hyprland powerprofiles battery network wireplumber mpris notifd bluetooth tray
 			]);
