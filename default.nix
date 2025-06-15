@@ -299,7 +299,7 @@
 					"$mainMod, F, fullscreen"
 					"$mainMod, V, togglefloating"
 					"$mainMod, Q, killactive"
-					(lib.mkIf config.enableSwayNC "$mainMod SHIFT, N, exec, swaync-client -t -sw")
+					(lib.mkIf config.enableSwayNC "$mainMod CONTROL, N, exec, swaync-client -t -sw")
 					(lib.mkIf (config.enableWlogout) "$mainMod SHIFT, E, exec, $logoutMenuCmd")
 
 					# Brightness
