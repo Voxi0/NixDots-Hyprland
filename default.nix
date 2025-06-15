@@ -19,7 +19,7 @@
 	config = {
 		# Enable/Disable Home Manager modules
 		enableWofi = true;
-		enableMako = true;
+		enableSwayNC = true;
 		nixDotsHyprland.enableAGS = true;
 		enableWlogout = true;
 
@@ -147,7 +147,7 @@
 					"swww restore"
 					(lib.mkIf config.nixDotsHyprland.enableAGS "uwsm app -- ags run --gtk4")
 					"uwsm app -- udiskie --automount --smart-tray --terminal=$terminal"
-					"hyprshade on vibrance"
+					(lib.mkIf config.enableSwayNC "uwsm app -- swaync")
 					(lib.mkIf (pkgs.mpdscribble != null) "uwsm app -- mpdscribble")
 				];
 
@@ -299,6 +299,7 @@
 					"$mainMod, F, fullscreen"
 					"$mainMod, V, togglefloating"
 					"$mainMod, Q, killactive"
+					(lib.mkIf config.enableSwayNC "$mainMod SHIFT, N, exec, swaync-client -t -sw")
 					(lib.mkIf (config.enableWlogout) "$mainMod SHIFT, E, exec, $logoutMenuCmd")
 
 					# Brightness

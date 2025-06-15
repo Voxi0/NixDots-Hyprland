@@ -1,6 +1,6 @@
 { inputs, ... }: {
   # Import Nix modules
   imports = [
-    ./wofi ./mako.nix ./wlogout.nix
+    ./wofi ./swaync.nix ./wlogout.nix
   ];
 }
