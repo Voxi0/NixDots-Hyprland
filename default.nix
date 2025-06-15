@@ -98,10 +98,6 @@
 
 			# Plugins and settings
 			plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [];
-			extraConfig = ''
-				source = ~/.config/hypr/monitors.conf
-				source = ~/.config/hypr/workspaces.conf
-			'';
 			settings = {
 				#############################
 				### ENVIRONMENT VARIABLES ###
