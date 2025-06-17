@@ -18,7 +18,7 @@
 		# Enable/Disable Home Manager modules
 		enableWofi = true;
 		enableSwayNC = true;
-		nixDotsHyprland.enableAGS = true;
+		enableAGS = true;
 		enableWlogout = true;
 
 		# Home
@@ -143,7 +143,7 @@
 					"systemctl --user enable --now hyprpolkitagent.service"
 					"uwsm app -- swww-daemon"
 					"swww restore"
-					(lib.mkIf config.nixDotsHyprland.enableAGS "uwsm app -- ags run --gtk4")
+					(lib.mkIf config.enableAGS "uwsm app -- ags run --gtk4")
 					"uwsm app -- udiskie --automount --smart-tray --terminal=$terminal"
 					(lib.mkIf config.enableSwayNC "uwsm app -- swaync")
 					(lib.mkIf (pkgs.mpdscribble != null) "uwsm app -- mpdscribble")
