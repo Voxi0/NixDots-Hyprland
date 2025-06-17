@@ -1,13 +1,11 @@
 { inputs }: { lib, config, pkgs, ... }: {
 	# Import Nix modules
 	imports = [
-		inputs.ags.homeManagerModules.default
-		./apps
+		(import ./apps { inherit inputs; })
 	];
 
 	# Module options
 	options.nixDotsHyprland = {
-		enableAGS = lib.mkEnableOption "Enables AGS for widgets";
 		kbLayout = lib.mkOption {
 			type = lib.types.str;
 			default = "gb";
@@ -376,19 +374,6 @@
 					"$mainMod, mouse:273, resizewindow"
 				];
 			};
-		};
-
-		# AGS configuration - For widgets and such
-		programs.ags = {
-			enable = true;
-			configDir = null;
-
-			# Additional packages to add to GJS's runtime
-			extraPackages = with pkgs; [
-				gtksourceview accountsservice
-			] ++ (with inputs.ags.packages.${pkgs.system}; [
-				hyprland powerprofiles battery network wireplumber mpris notifd bluetooth tray
-			]);
 		};
 	};
 }
