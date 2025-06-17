@@ -1,4 +1,4 @@
-{ inputs, lib, config, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   # Import Nix modules
   imports = [
     ./wofi ./swaync.nix ./wlogout.nix
