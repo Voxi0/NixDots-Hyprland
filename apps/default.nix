@@ -8,15 +8,17 @@
 	options.enableAGS = lib.mkEnableOption "Enables AGS for widgets";
 
 	# AGS configuration - For widgets and such
-	programs.ags = {
-		enable = true;
-		configDir = null;
+	config = lib.mkIf config.enableAGS {
+		programs.ags = {
+			enable = true;
+			configDir = null;
 
-		# Additional packages to add to GJS's runtime
-		extraPackages = with pkgs; [
-			gtksourceview accountsservice
-		] ++ (with inputs.ags.packages.${pkgs.system}; [
-			hyprland powerprofiles battery network wireplumber mpris notifd bluetooth tray
-		]);
+			# Additional packages to add to GJS's runtime
+			extraPackages = with pkgs; [
+				gtksourceview accountsservice
+			] ++ (with inputs.ags.packages.${pkgs.system}; [
+				hyprland powerprofiles battery network wireplumber mpris notifd bluetooth tray
+			]);
+		};
 	};
 }
